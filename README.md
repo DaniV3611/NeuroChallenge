@@ -24,3 +24,18 @@ NeuroChallenge is an interactive platform designed to evaluate, train, and enhan
 ### Project Objective:
 
 To create a digital tool that not only measures cognitive skills in a fun way but also develops these skills through repetition, competitive gameplay, and constant feedback in a motivating and customizable environment.
+
+## Environment
+
+```sh
+# PostgreSQL Configuration
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+POSTGRES_DB=neurochallenge
+POSTGRES_PORT=5432
+
+# FastAPI Backend Configuration
+API_PORT=8000
+SECRET_KEY=mysupersecretapikey
+ENVIRONMENT=development
+```
