@@ -1,8 +1,11 @@
+import { useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const onScroll = () => {
@@ -32,7 +35,10 @@ export function Header() {
       }}
     >
       <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
-        <span className="font-extrabold text-xl text-purple-700 tracking-tight animate-hero-fade-in">
+        <span
+          className="font-extrabold text-xl text-purple-700 tracking-tight animate-hero-fade-in cursor-pointer"
+          onClick={() => navigate({ to: "/" })}
+        >
           NeuroChallenge
         </span>
         {/* Hamburger for mobile */}
