@@ -1,10 +1,5 @@
+import AnimatedLogo from "@/components/AnimatedLogo";
 import { createFileRoute } from "@tanstack/react-router";
-import { AnimatedHero } from "../components/AnimatedHero";
-import { AboutSection } from "../components/AboutSection";
-import { Feature } from "../components/Feature";
-import { TestimonialsSection } from "../components/TestimonialsSection";
-import { CallToActionSection } from "../components/CallToActionSection";
-import { Header } from "../components/Header";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -12,50 +7,13 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <>
-      <Header />
-      <main className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 flex flex-col pt-20">
-        {/* pt-20 to offset the fixed header height */}
-        <AnimatedHero />
-        <AboutSection />
-        <section
-          id="features"
-          className="flex-1 px-4 py-12 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in-up"
-        >
-          <Feature
-            title="30+ Unique Challenges"
-            description="Memory, logic, attention, reflexes, vision, verbal reasoning, and more. Scientifically designed for real improvement."
-            icon={
-              <span role="img" aria-label="Puzzle">
-                🧩
-              </span>
-            }
-          />
-          <Feature
-            title="Global Rankings"
-            description="Compete with users worldwide. Real-time leaderboards and regional stats keep you motivated."
-            icon={
-              <span role="img" aria-label="Trophy">
-                🏆
-              </span>
-            }
-          />
-          <Feature
-            title="Personal Progress"
-            description="Track your stats, see your growth, and get personalized suggestions to boost your skills."
-            icon={
-              <span role="img" aria-label="Chart">
-                📈
-              </span>
-            }
-          />
-        </section>
-        <TestimonialsSection />
-        <CallToActionSection />
-        <footer className="py-8 text-center text-gray-500 text-sm bg-white/60 mt-8 animate-fade-in">
-          &copy; {new Date().getFullYear()} NeuroChallenge. All rights reserved.
-        </footer>
-        <style>{`
+    <div className="w-full min-h-dvh flex flex-col items-center">
+      {/** Hero Section */}
+      <section className="w-full flex flex-col items-center mt-24 animate-fade-in-up">
+        <AnimatedLogo />
+        <h1 className="text-4xl font-bold text-slate-950">Neuro Challenge</h1>
+      </section>
+      <style>{`
           @keyframes fade-in {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -82,7 +40,6 @@ function Index() {
           .animate-bounce-slow { animation: bounce-slow 2.5s infinite; }
           .animate-hero-fade-in { animation: hero-fade-in 1.2s both; }
         `}</style>
-      </main>
-    </>
+    </div>
   );
 }
