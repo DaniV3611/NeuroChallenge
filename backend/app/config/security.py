@@ -4,7 +4,7 @@ from typing import Optional
 import bcrypt
 from jose import jwt
 
-from app.config.environment import JWT_EXPIRATION, JWT_SECRET
+from app.config.environment import JWT_EXPIRATION, SECRET_KEY
 
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
@@ -30,7 +30,7 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(
         to_encode, 
-        JWT_SECRET, 
+        SECRET_KEY, 
         algorithm="HS256"
     )
     

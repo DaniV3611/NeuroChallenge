@@ -15,11 +15,11 @@ NeuroChallenge is an interactive platform designed to evaluate, train, and enhan
 
 ### Suggested Technologies:
 
-- **Frontend**: React.js / Next.js
-- **Backend**: Node.js with Express or NestJS
-- **Database**: PostgreSQL or MongoDB
-- **Authentication**: Firebase Auth or Auth0
-- **Avatar Storage**: AWS S3 or Cloudinary
+- **Frontend**: React.js
+- **Backend**: FastAPI
+- **Database**: PostgreSQL
+- **Authentication**: OAuth2
+- **Avatar Storage**: Avatar's API
 
 ### Project Objective:
 

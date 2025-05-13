@@ -1,5 +1,5 @@
 services:
-  postgres:
+  db:
     image: postgres:15
     container_name: neurochallenge-db
     restart: always
@@ -23,13 +23,13 @@ services:
     ports:
       - "${API_PORT}:8000"
     environment:
-      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
       - SECRET_KEY=${SECRET_KEY}
       - ENVIRONMENT=${ENVIRONMENT}
     volumes:
       - ./backend:/app
     depends_on:
-      - postgres
+      - db
     networks:
       - neurochallenge-network
 
@@ -40,7 +40,7 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - postgres
+      - db
     networks:
       - neurochallenge-network
 

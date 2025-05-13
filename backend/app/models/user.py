@@ -1,4 +1,4 @@
-from sqlalchemy import Column, String, Boolean, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 from datetime import datetime
@@ -16,7 +16,8 @@ class User(Base):
     avatar_url = Column(String, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     is_superuser = Column(Boolean, default=False)
+    total_score = Column(Integer, default=0)
     
     # Relationships
     results = relationship("Result", back_populates="user")
-    ranking = relationship("Ranking", back_populates="user", uselist=False)
+    # ranking = relationship("Ranking", back_populates="user", uselist=False)

@@ -14,7 +14,7 @@ from app.config.environment import DATABASE_URL
 # Importar Base para el target_metadata
 from app.db.session import Base
 # Importar todos los modelos para asegurar que SQLAlchemy los registre
-from app.models import User, Challenge, Result, Ranking
+from app.models import User, Challenge, Result, Detail, Game
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

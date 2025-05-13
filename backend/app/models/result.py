@@ -10,13 +10,7 @@ class Result(Base):
     __tablename__ = "results"
     
     id = Column(UUID(as_uuid=True), primary_key=True, index=True, default=uuid.uuid4)
-    user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
-    challenge_id = Column(UUID(as_uuid=True), ForeignKey("challenges.id"), nullable=False)
+    game_id = Column(UUID(as_uuid=True), ForeignKey("games.id"), nullable=False)
     score = Column(Integer, nullable=False)
     date = Column(DateTime, default=datetime.utcnow)
     time = Column(Integer, nullable=True)  # Time taken in seconds/milliseconds
-    details = Column(Text, nullable=True)  # JSON string for additional details
-    
-    # Relationships
-    user = relationship("User", back_populates="results")
-    challenge = relationship("Challenge", back_populates="results")
