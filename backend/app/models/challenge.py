@@ -16,4 +16,4 @@ class Challenge(Base):
     is_active = Column(Boolean, default=True)
     
     # Relationships
-    results = relationship("Result", back_populates="challenge")
+    games = relationship("Game", back_populates="challenge")

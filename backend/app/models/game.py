@@ -14,6 +14,6 @@ class Game(Base):
     challenge_id = Column(UUID(as_uuid=True), ForeignKey("challenges.id"), nullable=False)
 
     # Relationships
-    user = relationship("User", back_populates="results")
-    challenge = relationship("Challenge", back_populates="results")
-    result = relationship("Result", back_populates="game")
+    user = relationship("User", back_populates="games")
+    challenge = relationship("Challenge", back_populates="games")
+    results = relationship("Result", back_populates="game")

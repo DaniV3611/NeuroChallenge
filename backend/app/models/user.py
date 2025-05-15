@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, Boolean, DateTime
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
 from datetime import datetime
@@ -19,5 +19,6 @@ class User(Base):
     total_score = Column(Integer, default=0)
     
     # Relationships
-    results = relationship("Result", back_populates="user")
+    # results = relationship("Result", back_populates="user")
+    games = relationship("Game", back_populates="user")
     # ranking = relationship("Ranking", back_populates="user", uselist=False)

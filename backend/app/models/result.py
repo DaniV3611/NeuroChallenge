@@ -14,3 +14,6 @@ class Result(Base):
     score = Column(Integer, nullable=False)
     date = Column(DateTime, default=datetime.utcnow)
     time = Column(Integer, nullable=True)  # Time taken in seconds/milliseconds
+
+    # Relationships
+    game = relationship("Game", back_populates="results")
