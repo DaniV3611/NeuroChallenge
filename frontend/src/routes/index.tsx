@@ -1,6 +1,6 @@
 import AnimatedLogo from "@/components/Landing/AnimatedLogo";
 import { Button } from "@/components/ui/button";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { Feature } from "@/components/Landing/Feature";
 import { AboutSection } from "@/components/Landing/AboutSection";
 import { TestimonialsSection } from "@/components/Landing/TestimonialsSection";
@@ -27,7 +27,7 @@ function Index() {
           globally, track your progress, and unlock your brain's full potential!
         </p>
         <Button variant="link" className="animate-fade-in text-gray-700">
-          Explore Challenges
+          <Link to="/challenges">Explore Challenges</Link>
         </Button>
       </section>
       <section

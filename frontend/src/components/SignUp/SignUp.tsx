@@ -3,6 +3,7 @@ import { Button } from "../ui/button";
 import { CardContent, CardTitle, CardHeader } from "../ui/card";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
+import { toast } from "sonner";
 
 interface Props {
   changeTab: (tab: string) => void;
@@ -24,6 +25,11 @@ const SignUp = ({ changeTab }: Props) => {
     setPasswordError("");
     // TODO: Implement signup logic
     console.log(username, email, password);
+    if (true) {
+      toast.success("Account created successfully!");
+    } else {
+      toast.error("Account creation failed");
+    }
   };
 
   return (

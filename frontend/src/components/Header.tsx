@@ -76,6 +76,9 @@ export function Header() {
           <a href="/#testimonials" className="hover:underline">
             Testimonials
           </a>
+          <a href="/challenges" className="hover:underline">
+            Challenges
+          </a>
           <Button className="bg-gray-800 text-white hover:bg-gray-950">
             <Link to="/signin">Sign In</Link>
           </Button>
@@ -114,6 +117,15 @@ export function Header() {
         >
           Testimonials
         </a>
+        <Button
+          variant="link"
+          className="bg-gray-800 text-white hover:bg-gray-950"
+          onClick={() => setMenuOpen(false)}
+        >
+          <Link className="w-full" to="/challenges">
+            Challenges
+          </Link>
+        </Button>
         <Button
           variant="link"
           className="bg-gray-800 text-white hover:bg-gray-950"

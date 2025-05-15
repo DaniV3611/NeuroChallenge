@@ -3,6 +3,7 @@ import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { useState } from "react";
 import { Label } from "../ui/label";
+import { toast } from "sonner";
 
 interface Props {
   changeTab: (tab: string) => void;
@@ -16,6 +17,12 @@ const Login = ({ changeTab }: Props) => {
     e.preventDefault();
     // TODO: Implement login logic
     console.log(email, password);
+
+    if (true) {
+      toast.success("Login successful!");
+    } else {
+      toast.error("Login failed");
+    }
   };
 
   return (
