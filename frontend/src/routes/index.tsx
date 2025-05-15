@@ -1,10 +1,9 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { AnimatedHero } from "../components/AnimatedHero";
-import { AboutSection } from "../components/AboutSection";
-import { Feature } from "../components/Feature";
-import { TestimonialsSection } from "../components/TestimonialsSection";
-import { CallToActionSection } from "../components/CallToActionSection";
-import { Header } from "../components/Header";
+import AnimatedLogo from "@/components/Landing/AnimatedLogo";
+import { Button } from "@/components/ui/button";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Feature } from "@/components/Landing/Feature";
+import { AboutSection } from "@/components/Landing/AboutSection";
+import { TestimonialsSection } from "@/components/Landing/TestimonialsSection";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -12,50 +11,53 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <>
-      <Header />
-      <main className="min-h-screen bg-gradient-to-br from-blue-100 via-purple-100 to-pink-100 flex flex-col pt-20">
-        {/* pt-20 to offset the fixed header height */}
-        <AnimatedHero />
-        <AboutSection />
-        <section
-          id="features"
-          className="flex-1 px-4 py-12 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 animate-fade-in-up"
-        >
+    <div className="w-full min-h-dvh flex flex-col items-center">
+      {/** Hero Section */}
+      <section
+        className="w-full h-dvh bg-gradient-to-br from-blue-200 via-gray-200 to-pink-200 flex flex-col items-center justify-center animate-fade-in-up"
+        id="#"
+      >
+        <AnimatedLogo />
+        <h1 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-2 text-center drop-shadow-sm">
+          NeuroChallenge
+        </h1>
+        <p className="text-lg md:text-xl text-gray-700 max-w-2xl text-center mb-2 animate-fade-in">
+          Interactive platform to evaluate, train, and enhance your cognitive,
+          sensory, and motor skills through fun, scientific challenges. Compete
+          globally, track your progress, and unlock your brain's full potential!
+        </p>
+        <Button variant="link" className="animate-fade-in text-gray-700">
+          <Link to="/challenges">Explore Challenges</Link>
+        </Button>
+      </section>
+      <section
+        id="features"
+        className="w-full h-dvh flex flex-col items-center justify-center bg-gradient-to-bl from-pink-200 via-gray-200 to-green-200 gap-4 md:gap-8"
+      >
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4 text-center drop-shadow-sm">
+          Features
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-4 max-w-6xl">
           <Feature
-            title="30+ Unique Challenges"
-            description="Memory, logic, attention, reflexes, vision, verbal reasoning, and more. Scientifically designed for real improvement."
-            icon={
-              <span role="img" aria-label="Puzzle">
-                🧩
-              </span>
-            }
+            title="Challenge Variety"
+            description="Over 30 challenges in categories like memory, logic, attention, reflexes, peripheral vision, verbal reasoning, and coordination."
+            icon="🧠"
           />
           <Feature
-            title="Global Rankings"
-            description="Compete with users worldwide. Real-time leaderboards and regional stats keep you motivated."
-            icon={
-              <span role="img" aria-label="Trophy">
-                🏆
-              </span>
-            }
+            title="Ranking System"
+            description="Real-time global and regional rankings to compare your performance with users worldwide."
+            icon="🏆"
           />
           <Feature
-            title="Personal Progress"
-            description="Track your stats, see your growth, and get personalized suggestions to boost your skills."
-            icon={
-              <span role="img" aria-label="Chart">
-                📈
-              </span>
-            }
+            title="Multiplayer Mode"
+            description="Compete in real-time against other users and improve your cognitive skills while having fun."
+            icon="🎮"
           />
-        </section>
-        <TestimonialsSection />
-        <CallToActionSection />
-        <footer className="py-8 text-center text-gray-500 text-sm bg-white/60 mt-8 animate-fade-in">
-          &copy; {new Date().getFullYear()} NeuroChallenge. All rights reserved.
-        </footer>
-        <style>{`
+        </div>
+      </section>
+      <TestimonialsSection />
+      <AboutSection />
+      <style>{`
           @keyframes fade-in {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -82,7 +84,6 @@ function Index() {
           .animate-bounce-slow { animation: bounce-slow 2.5s infinite; }
           .animate-hero-fade-in { animation: hero-fade-in 1.2s both; }
         `}</style>
-      </main>
-    </>
+    </div>
   );
 }

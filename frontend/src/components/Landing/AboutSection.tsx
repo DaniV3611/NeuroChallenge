@@ -1,8 +1,11 @@
 export function AboutSection() {
   return (
-    <section className="py-16 px-4 bg-white/70 backdrop-blur-sm animate-fade-in-up">
+    <section
+      className="py-16 px-4 bg-gradient-to-bl from-white via-gray-200 to-blue-200 backdrop-blur-sm animate-fade-in-up w-full min-h-dvh flex flex-col items-center justify-center "
+      id="about"
+    >
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl font-bold mb-4 text-blue-700">
+        <h2 className="text-3xl font-bold mb-4 text-gray-800">
           About NeuroChallenge
         </h2>
         <p className="text-gray-700 text-lg mb-4">
