@@ -83,7 +83,7 @@ export function Header() {
             Challenges
           </a>
           {isAuthenticated && user ? (
-            <Button className="bg-gray-800 text-white hover:bg-gray-950">
+            <Button variant="outline" className="">
               <Link to="/signin">{user.username}</Link>
             </Button>
           ) : (
