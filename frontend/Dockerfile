@@ -1,35 +1,24 @@
-# Build stage
-FROM node:20-alpine as build
+# Stage 0, "build-stage", based on Node.js, to build and compile the frontend
+FROM node:20 AS build-stage
 
 WORKDIR /app
 
-# Instalar dependencias
-COPY package*.json ./
+COPY package*.json /app/
+
 RUN npm install
 
-# Copiar el código fuente
-COPY . .
+COPY ./ /app/
 
-# Construir la aplicación
+ARG VITE_API_URL=${VITE_API_URL}
+
 RUN npm run build
 
-# Verificar la construcción
-RUN ls -la dist/
-RUN cat dist/index.html
 
-# Production stage
+# Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
 FROM nginx:alpine
 
-# Copiar la configuración de nginx
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=build-stage /app/dist/ /usr/share/nginx/html/
 
-# Copiar los archivos de build al directorio de nginx
-COPY --from=build /app/dist /usr/share/nginx/html
-
-# Verificar que los archivos se copiaron correctamente
-RUN ls -la /usr/share/nginx/html
-RUN cat /usr/share/nginx/html/index.html
+COPY ./nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"] 

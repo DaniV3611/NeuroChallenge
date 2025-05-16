@@ -19,9 +19,9 @@ export const getChallenges = async (): Promise<Challenge[]> => {
     },
     {
       id: "3",
-      name: "Challenge 3",
-      description: "Description 3",
-      link: "/challenges/challenge-3",
+      name: "Aim Trainer",
+      description: "Improve your aim with this target practice game.",
+      link: "/challenges/aim-trainer",
     },
   ];
 };

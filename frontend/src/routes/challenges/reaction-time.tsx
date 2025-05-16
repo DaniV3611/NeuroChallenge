@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import ReactionTimeChallenge from "../../components/Challenges/ReactionTimeChallenge";
 
 export const Route = createFileRoute("/challenges/reaction-time")({
   component: RouteComponent,
@@ -13,6 +14,7 @@ function RouteComponent() {
       <p className="text-gray-800">
         React to a stimulus as quickly as possible.
       </p>
+      <ReactionTimeChallenge />
     </div>
   );
 }

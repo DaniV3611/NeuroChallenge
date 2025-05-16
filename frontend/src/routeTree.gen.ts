@@ -16,6 +16,7 @@ import { Route as IndexImport } from './routes/index'
 import { Route as ChallengesIndexImport } from './routes/challenges/index'
 import { Route as ChallengesSequenceMemoryImport } from './routes/challenges/sequence-memory'
 import { Route as ChallengesReactionTimeImport } from './routes/challenges/reaction-time'
+import { Route as ChallengesAimTrainerImport } from './routes/challenges/aim-trainer'
 
 // Create/Update Routes
 
@@ -49,6 +50,12 @@ const ChallengesReactionTimeRoute = ChallengesReactionTimeImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const ChallengesAimTrainerRoute = ChallengesAimTrainerImport.update({
+  id: '/challenges/aim-trainer',
+  path: '/challenges/aim-trainer',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -65,6 +72,13 @@ declare module '@tanstack/react-router' {
       path: '/signin'
       fullPath: '/signin'
       preLoaderRoute: typeof SigninImport
+      parentRoute: typeof rootRoute
+    }
+    '/challenges/aim-trainer': {
+      id: '/challenges/aim-trainer'
+      path: '/challenges/aim-trainer'
+      fullPath: '/challenges/aim-trainer'
+      preLoaderRoute: typeof ChallengesAimTrainerImport
       parentRoute: typeof rootRoute
     }
     '/challenges/reaction-time': {
@@ -96,6 +110,7 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/signin': typeof SigninRoute
+  '/challenges/aim-trainer': typeof ChallengesAimTrainerRoute
   '/challenges/reaction-time': typeof ChallengesReactionTimeRoute
   '/challenges/sequence-memory': typeof ChallengesSequenceMemoryRoute
   '/challenges': typeof ChallengesIndexRoute
@@ -104,6 +119,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/signin': typeof SigninRoute
+  '/challenges/aim-trainer': typeof ChallengesAimTrainerRoute
   '/challenges/reaction-time': typeof ChallengesReactionTimeRoute
   '/challenges/sequence-memory': typeof ChallengesSequenceMemoryRoute
   '/challenges': typeof ChallengesIndexRoute
@@ -113,6 +129,7 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/signin': typeof SigninRoute
+  '/challenges/aim-trainer': typeof ChallengesAimTrainerRoute
   '/challenges/reaction-time': typeof ChallengesReactionTimeRoute
   '/challenges/sequence-memory': typeof ChallengesSequenceMemoryRoute
   '/challenges/': typeof ChallengesIndexRoute
@@ -123,6 +140,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/signin'
+    | '/challenges/aim-trainer'
     | '/challenges/reaction-time'
     | '/challenges/sequence-memory'
     | '/challenges'
@@ -130,6 +148,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/signin'
+    | '/challenges/aim-trainer'
     | '/challenges/reaction-time'
     | '/challenges/sequence-memory'
     | '/challenges'
@@ -137,6 +156,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/signin'
+    | '/challenges/aim-trainer'
     | '/challenges/reaction-time'
     | '/challenges/sequence-memory'
     | '/challenges/'
@@ -146,6 +166,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SigninRoute: typeof SigninRoute
+  ChallengesAimTrainerRoute: typeof ChallengesAimTrainerRoute
   ChallengesReactionTimeRoute: typeof ChallengesReactionTimeRoute
   ChallengesSequenceMemoryRoute: typeof ChallengesSequenceMemoryRoute
   ChallengesIndexRoute: typeof ChallengesIndexRoute
@@ -154,6 +175,7 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SigninRoute: SigninRoute,
+  ChallengesAimTrainerRoute: ChallengesAimTrainerRoute,
   ChallengesReactionTimeRoute: ChallengesReactionTimeRoute,
   ChallengesSequenceMemoryRoute: ChallengesSequenceMemoryRoute,
   ChallengesIndexRoute: ChallengesIndexRoute,
@@ -171,6 +193,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/signin",
+        "/challenges/aim-trainer",
         "/challenges/reaction-time",
         "/challenges/sequence-memory",
         "/challenges/"
@@ -181,6 +204,9 @@ export const routeTree = rootRoute
     },
     "/signin": {
       "filePath": "signin.tsx"
+    },
+    "/challenges/aim-trainer": {
+      "filePath": "challenges/aim-trainer.tsx"
     },
     "/challenges/reaction-time": {
       "filePath": "challenges/reaction-time.tsx"
