@@ -10,10 +10,10 @@ class UserRanking(BaseModel):
         orm_mode = True
 
 class ChallengeRanking(BaseModel):
-    id: UUID
+    user_id: UUID
     username: str
-    challenge_id: int
-    challenge_score: int
+    challenge_id: UUID
+    score: int
 
     class Config:
         orm_mode = True
