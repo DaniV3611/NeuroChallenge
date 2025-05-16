@@ -1,10 +1,13 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
+import useAuth from "@/hooks/useAuth";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const { isAuthenticated, user } = useAuth();
 
   const navigate = useNavigate();
 
@@ -79,9 +82,15 @@ export function Header() {
           <a href="/challenges" className="hover:underline">
             Challenges
           </a>
-          <Button className="bg-gray-800 text-white hover:bg-gray-950">
-            <Link to="/signin">Sign In</Link>
-          </Button>
+          {isAuthenticated && user ? (
+            <Button className="bg-gray-800 text-white hover:bg-gray-950">
+              <Link to="/signin">{user.username}</Link>
+            </Button>
+          ) : (
+            <Button className="bg-gray-800 text-white hover:bg-gray-950">
+              <Link to="/signin">Sign In</Link>
+            </Button>
+          )}
         </nav>
       </div>
       {/* Mobile nav */}

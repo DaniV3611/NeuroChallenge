@@ -14,21 +14,21 @@ export function TestimonialsSection() {
               “NeuroChallenge made training my memory fun and competitive. I
               love the global rankings!”
             </p>
-            <span className="font-bold text-gray-800">— Alex G.</span>
+            <span className="font-bold text-gray-800">— Nicolás R.</span>
           </div>
           <div className="p-6 rounded-xl shadow bg-white/90 text-center animate-fade-in">
             <p className="text-gray-700 italic mb-2">
               “The variety of challenges keeps me coming back every day. My
               focus has improved a lot.”
             </p>
-            <span className="font-bold text-gray-800">— Priya S.</span>
+            <span className="font-bold text-gray-800">— Fabián R.</span>
           </div>
           <div className="p-6 rounded-xl shadow bg-white/90 text-center animate-fade-in">
             <p className="text-gray-700 italic mb-2">
               “I can see my progress and compete with friends. The dashboard is
               awesome!”
             </p>
-            <span className="font-bold text-gray-800">— Marco T.</span>
+            <span className="font-bold text-gray-800">— Daniel V.</span>
           </div>
         </div>
       </div>
