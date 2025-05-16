@@ -13,9 +13,9 @@ export const getChallenges = async (): Promise<Challenge[]> => {
     },
     {
       id: "2",
-      name: "Challenge 2",
-      description: "Description 2",
-      link: "/challenges/challenge-2",
+      name: "Reaction Time",
+      description: "React to a stimulus as quickly as possible.",
+      link: "/challenges/reaction-time",
     },
     {
       id: "3",

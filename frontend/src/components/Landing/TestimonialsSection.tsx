@@ -1,7 +1,7 @@
 export function TestimonialsSection() {
   return (
     <section
-      className="py-16 px-4 bg-gradient-to-br from-green-200 via-gray-200 to-white animate-fade-in-up w-full min-h-dvh flex flex-col items-center justify-center"
+      className="pt-20 pb-8 px-4 bg-gradient-to-br from-green-200 via-gray-200 to-white animate-fade-in-up w-full flex flex-col items-center justify-center"
       id="testimonials"
     >
       <div className="max-w-5xl mx-auto">

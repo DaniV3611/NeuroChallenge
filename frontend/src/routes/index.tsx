@@ -32,7 +32,7 @@ function Index() {
       </section>
       <section
         id="features"
-        className="w-full h-dvh flex flex-col items-center justify-center bg-gradient-to-bl from-pink-200 via-gray-200 to-green-200 gap-4 md:gap-8"
+        className="w-full h-auto pt-20 pb-8 flex flex-col items-center justify-center bg-gradient-to-bl from-pink-200 via-gray-200 to-green-200 gap-4 md:gap-8"
       >
         <h2 className="text-3xl md:text-4xl font-bold text-gray-800 mb-4 text-center drop-shadow-sm">
           Features

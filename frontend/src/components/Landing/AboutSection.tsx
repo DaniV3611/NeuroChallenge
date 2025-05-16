@@ -1,7 +1,7 @@
 export function AboutSection() {
   return (
     <section
-      className="py-16 px-4 bg-gradient-to-bl from-white via-gray-200 to-blue-200 backdrop-blur-sm animate-fade-in-up w-full min-h-dvh flex flex-col items-center justify-center "
+      className="py-20 px-4 bg-gradient-to-bl from-white via-gray-200 to-blue-200 backdrop-blur-sm animate-fade-in-up w-full flex flex-col items-center justify-center "
       id="about"
     >
       <div className="max-w-4xl mx-auto text-center">
