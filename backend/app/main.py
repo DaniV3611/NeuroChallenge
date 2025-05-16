@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from app.db.session import Base, engine
-# from app.api.main import api_router
+from app.api.main import api_router
 from fastapi.middleware.cors import CORSMiddleware
 
 # Inicializar tablas si no hay migraciones todavía
@@ -20,4 +20,4 @@ app.add_middleware(
 def read_root():
     return {"message": "Welcome to NeuroChallenge API"}
 
-# app.include_router(api_router, prefix="/api")
+app.include_router(api_router, prefix="/api")
