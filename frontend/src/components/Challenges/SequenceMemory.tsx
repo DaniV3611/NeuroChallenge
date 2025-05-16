@@ -5,21 +5,14 @@ const SequenceMemory = () => {
   const [gameState, setGameState] = useState<"idle" | "playing" | "finished">(
     "idle"
   );
+  const [sequence, setSequence] = useState<number[]>([]); // Secuencia a seguir
+  const [userStep, setUserStep] = useState(0); // Paso actual del usuario
+  const [isShowingSequence, setIsShowingSequence] = useState(false); // Si se está mostrando la secuencia
+  const [score, setScore] = useState(0); // Puntuación
 
   const generateNumber = () => {
     return Math.floor(Math.random() * 9) + 1;
   };
-  const activateCell = (cellId: number) => {
-    handleCellClick(cellId);
-  };
-  useEffect(() => {
-    if (gameState === "playing") {
-      setTimeout(() => {
-        const number = generateNumber();
-        activateCell(number);
-      }, 1000); // Wait 1 second to start
-    }
-  }, [gameState]);
 
   // 9 cells in a 3x3 grid
   const [cells, setCells] = useState([
@@ -78,52 +71,110 @@ const SequenceMemory = () => {
     );
   }, []);
 
+  // Muestra la secuencia iluminando las celdas una por una
+  const showSequence = useCallback(async (seq: number[]) => {
+    setIsShowingSequence(true);
+    for (let i = 0; i < seq.length; i++) {
+      setCellState(seq[i], true);
+      await new Promise((res) => setTimeout(res, 500));
+      setCellState(seq[i], false);
+      await new Promise((res) => setTimeout(res, 200));
+    }
+    setIsShowingSequence(false);
+    setUserStep(0);
+  }, [setCellState]);
+
+  // Inicia el juego y la primera secuencia
+  const startGame = () => {
+    const first = generateNumber();
+    setSequence([first]);
+    setScore(0); // Reinicia la puntuación
+    setGameState("playing");
+  };
+
+  // Cuando cambia la secuencia o el estado del juego, mostrar la secuencia
+  useEffect(() => {
+    if (gameState === "playing" && sequence.length > 0) {
+      showSequence(sequence);
+    }
+  }, [gameState, sequence, showSequence]);
+
+  // Maneja el click del usuario
   const handleCellClick = useCallback(
     (cellId: number) => {
-      // Activar la celda
-      setCellState(cellId, true);
-
-      // Desactivar la celda después de 500ms
-      const timeoutId = setTimeout(() => {
-        setCellState(cellId, false);
-      }, 400);
-
-      // Limpiar el timeout si el componente se desmonta o se hace clic en otra celda
-      return () => clearTimeout(timeoutId);
+      if (isShowingSequence || gameState !== "playing") return;
+      if (cellId === sequence[userStep]) {
+        // Correcto
+        setCellState(cellId, true);
+        setTimeout(() => {
+          setCellState(cellId, false);
+        }, 300);
+        if (userStep + 1 === sequence.length) {
+          // Usuario completó la secuencia, agregar uno nuevo
+          setTimeout(() => {
+            setSequence((prev) => [...prev, generateNumber()]);
+            setScore((prev) => prev + 1); // Suma un punto
+          }, 500);
+        } else {
+          setUserStep((prev) => prev + 1);
+        }
+      } else {
+        // Incorrecto, terminar juego
+        setGameState("finished");
+      }
     },
-    [setCellState]
+    [isShowingSequence, gameState, sequence, userStep, setCellState]
   );
 
   if (gameState === "idle") {
     return (
       <div className="w-full h-full flex flex-col items-center justify-center">
-        <Button className="" onClick={() => setGameState("playing")}>
+        <Button className="" onClick={startGame}>
           Start the Game
         </Button>
       </div>
     );
   } else if (gameState === "playing") {
     return (
-      <div className="w-full h-full flex flex-wrap">
-        {cells.map((cell) => (
-          <div
-            key={cell.id}
-            className="w-1/3 h-1/3 p-2 cursor-pointer"
-            onClick={() => handleCellClick(cell.id)}
-          >
+      <div className="w-full h-full flex flex-col">
+        <div className="w-full flex justify-center items-center py-2">
+          <span className="text-lg font-semibold">Score: {score}</span>
+        </div>
+        <div className="w-full h-full flex flex-wrap">
+          {cells.map((cell) => (
             <div
-              className={`w-full h-full flex items-center justify-center ${
-                cell.isActive ? "bg-gray-800" : "bg-gray-800/40"
-              } rounded-xl shadow-lg transition-colors duration-200`}
-            ></div>
-          </div>
-        ))}
+              key={cell.id}
+              className={`w-1/3 h-1/3 p-2 ${
+                isShowingSequence ? "" : "cursor-pointer"
+              }`}
+              onClick={() => !isShowingSequence && handleCellClick(cell.id)}
+            >
+              <div
+                className={`w-full h-full flex items-center justify-center ${
+                  cell.isActive ? "bg-gray-800" : "bg-gray-800/40"
+                } rounded-xl shadow-lg transition-colors duration-200`}
+              ></div>
+            </div>
+          ))}
+        </div>
       </div>
     );
   } else if (gameState === "finished") {
     return (
       <div className="w-full h-full flex flex-col items-center justify-center">
         <h1 className="text-4xl font-bold">Finished</h1>
+        <span className="text-2xl mt-2">Final Score: {score}</span>
+        <Button
+          className="mt-4"
+          onClick={() => {
+            setGameState("idle");
+            setSequence([]);
+            setUserStep(0);
+            setScore(0);
+          }}
+        >
+          Restart
+        </Button>
       </div>
     );
   }
