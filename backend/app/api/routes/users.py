@@ -24,7 +24,7 @@ def register_user(user: UserCreate, db: SessionDep):
         username=user.username,
         email=user.email,
         password=password_hash,
-        avatar=user.avatar
+        avatar_url=user.avatar_url
     )
     db.add(new_user)
     db.commit()

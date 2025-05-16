@@ -1,3 +1,4 @@
+from datetime import datetime
 import uuid
 from pydantic import BaseModel, EmailStr
 
@@ -5,7 +6,7 @@ class UserCreate(BaseModel):
     username: str
     email: EmailStr
     password: str
-    avatar: str|None = None
+    avatar_url: str|None = None
 
 class UserLogin(BaseModel):
     email: EmailStr
@@ -15,8 +16,8 @@ class UserPublic(BaseModel):
     id: uuid.UUID
     username: str
     email: EmailStr
-    avatar: str|None = None
-    created_at: str
+    avatar_url: str|None = None
+    created_at: datetime
     is_superuser: bool
     total_score: int
 
