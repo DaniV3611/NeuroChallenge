@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import AimTrainer from "../../components/Challenges/AimTrainer";
 
 export const Route = createFileRoute("/challenges/aim-trainer")({
   component: RouteComponent,
@@ -11,6 +12,7 @@ function RouteComponent() {
       <p className="text-gray-800">
         Improve your aim with this target practice game.
       </p>
+      <AimTrainer />
     </div>
   );
 }

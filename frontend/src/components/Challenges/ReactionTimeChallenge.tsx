@@ -96,7 +96,7 @@ export default function ReactionTimeChallenge() {
         Round {Math.min(round + 1, TOTAL_ROUNDS)} / {TOTAL_ROUNDS}
       </div> */}
       <div
-        className={`w-full h-96 flex items-center justify-center rounded-2xl cursor-pointer select-none transition-colors duration-200 ${bgColor} shadow-lg`}
+        className={`w-full h-96 flex items-center justify-center rounded-2xl cursor-pointer select-none ${bgColor} shadow-lg`}
         onClick={handleClick}
       >
         <span className="text-3xl text-white font-bold text-center px-4">
