@@ -14,6 +14,7 @@ class Challenge(Base):
     category = Column(String(50), nullable=False)
     level = Column(Integer, default=1)
     is_active = Column(Boolean, default=True)
+    link = Column(String(255), nullable=False)
     
     # Relationships
     games = relationship("Game", back_populates="challenge")
