@@ -12,8 +12,9 @@
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as SigninImport } from './routes/signin'
-import { Route as ChallengesImport } from './routes/challenges'
 import { Route as IndexImport } from './routes/index'
+import { Route as ChallengesIndexImport } from './routes/challenges/index'
+import { Route as ChallengesSequenceMemoryImport } from './routes/challenges/sequence-memory'
 
 // Create/Update Routes
 
@@ -23,15 +24,21 @@ const SigninRoute = SigninImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const ChallengesRoute = ChallengesImport.update({
-  id: '/challenges',
-  path: '/challenges',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ChallengesIndexRoute = ChallengesIndexImport.update({
+  id: '/challenges/',
+  path: '/challenges/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ChallengesSequenceMemoryRoute = ChallengesSequenceMemoryImport.update({
+  id: '/challenges/sequence-memory',
+  path: '/challenges/sequence-memory',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,18 +53,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/challenges': {
-      id: '/challenges'
-      path: '/challenges'
-      fullPath: '/challenges'
-      preLoaderRoute: typeof ChallengesImport
-      parentRoute: typeof rootRoute
-    }
     '/signin': {
       id: '/signin'
       path: '/signin'
       fullPath: '/signin'
       preLoaderRoute: typeof SigninImport
+      parentRoute: typeof rootRoute
+    }
+    '/challenges/sequence-memory': {
+      id: '/challenges/sequence-memory'
+      path: '/challenges/sequence-memory'
+      fullPath: '/challenges/sequence-memory'
+      preLoaderRoute: typeof ChallengesSequenceMemoryImport
+      parentRoute: typeof rootRoute
+    }
+    '/challenges/': {
+      id: '/challenges/'
+      path: '/challenges'
+      fullPath: '/challenges'
+      preLoaderRoute: typeof ChallengesIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -67,42 +81,52 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/challenges': typeof ChallengesRoute
   '/signin': typeof SigninRoute
+  '/challenges/sequence-memory': typeof ChallengesSequenceMemoryRoute
+  '/challenges': typeof ChallengesIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/challenges': typeof ChallengesRoute
   '/signin': typeof SigninRoute
+  '/challenges/sequence-memory': typeof ChallengesSequenceMemoryRoute
+  '/challenges': typeof ChallengesIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/challenges': typeof ChallengesRoute
   '/signin': typeof SigninRoute
+  '/challenges/sequence-memory': typeof ChallengesSequenceMemoryRoute
+  '/challenges/': typeof ChallengesIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/challenges' | '/signin'
+  fullPaths: '/' | '/signin' | '/challenges/sequence-memory' | '/challenges'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/challenges' | '/signin'
-  id: '__root__' | '/' | '/challenges' | '/signin'
+  to: '/' | '/signin' | '/challenges/sequence-memory' | '/challenges'
+  id:
+    | '__root__'
+    | '/'
+    | '/signin'
+    | '/challenges/sequence-memory'
+    | '/challenges/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  ChallengesRoute: typeof ChallengesRoute
   SigninRoute: typeof SigninRoute
+  ChallengesSequenceMemoryRoute: typeof ChallengesSequenceMemoryRoute
+  ChallengesIndexRoute: typeof ChallengesIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  ChallengesRoute: ChallengesRoute,
   SigninRoute: SigninRoute,
+  ChallengesSequenceMemoryRoute: ChallengesSequenceMemoryRoute,
+  ChallengesIndexRoute: ChallengesIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -116,18 +140,22 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/challenges",
-        "/signin"
+        "/signin",
+        "/challenges/sequence-memory",
+        "/challenges/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/challenges": {
-      "filePath": "challenges.tsx"
-    },
     "/signin": {
       "filePath": "signin.tsx"
+    },
+    "/challenges/sequence-memory": {
+      "filePath": "challenges/sequence-memory.tsx"
+    },
+    "/challenges/": {
+      "filePath": "challenges/index.tsx"
     }
   }
 }
