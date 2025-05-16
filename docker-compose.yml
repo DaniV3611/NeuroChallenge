@@ -33,6 +33,32 @@ services:
     networks:
       - neurochallenge-network
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: neurochallenge-frontend
+    restart: always
+    volumes:
+      - frontend_build:/usr/share/nginx/html
+    networks:
+      - neurochallenge-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: neurochallenge-nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf
+      - frontend_build:/usr/share/nginx/html:ro
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - neurochallenge-network
+
   adminer:
     image: adminer:latest
     container_name: neurochallenge-adminer
@@ -46,6 +72,7 @@ services:
 
 volumes:
   postgres_data:
+  frontend_build:
 
 networks:
   neurochallenge-network:
